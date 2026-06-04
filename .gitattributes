@@ -1,0 +1,12 @@
+# Normalise les fins de ligne : LF dans le dépôt (cross-platform / Vercel Linux)
+* text=auto eol=lf
+
+# Fichiers binaires (pas de normalisation)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
