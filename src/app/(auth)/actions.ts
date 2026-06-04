@@ -59,7 +59,7 @@ export async function signUp(input: {
     password: parsed.data.password,
     options: {
       data: { full_name: parsed.data.fullName },
-      emailRedirectTo: `${appUrl()}/auth/confirm`,
+      emailRedirectTo: `${appUrl()}/auth/callback`,
     },
   });
 
@@ -92,7 +92,7 @@ export async function sendMagicLink(input: {
     email: parsed.data.email,
     options: {
       shouldCreateUser: true,
-      emailRedirectTo: `${appUrl()}/auth/confirm`,
+      emailRedirectTo: `${appUrl()}/auth/callback`,
     },
   });
 

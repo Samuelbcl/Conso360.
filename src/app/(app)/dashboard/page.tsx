@@ -53,6 +53,7 @@ export default async function DashboardPage() {
           <CardContent>
             <Button
               variant={profileComplete ? "outline" : "default"}
+              nativeButton={false}
               render={<Link href="/profil-menage" />}
             >
               {profileComplete ? "Modifier" : "Compléter mon profil"}

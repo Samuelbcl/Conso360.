@@ -40,10 +40,15 @@ export default function LandingPage() {
         <div className="mx-auto flex h-14 w-full max-w-6xl items-center px-4">
           <span className="font-semibold tracking-tight">{APP_NAME}</span>
           <div className="ml-auto flex items-center gap-2">
-            <Button variant="ghost" size="sm" render={<Link href="/login" />}>
+            <Button
+              variant="ghost"
+              size="sm"
+              nativeButton={false}
+              render={<Link href="/login" />}
+            >
               Se connecter
             </Button>
-            <Button size="sm" render={<Link href="/signup" />}>
+            <Button size="sm" nativeButton={false} render={<Link href="/signup" />}>
               Commencer
             </Button>
           </div>
@@ -62,10 +67,15 @@ export default function LandingPage() {
           personnel des dépenses de votre ménage.
         </p>
         <div className="mt-8 flex justify-center gap-3">
-          <Button size="lg" render={<Link href="/signup" />}>
+          <Button size="lg" nativeButton={false} render={<Link href="/signup" />}>
             Créer mon compte
           </Button>
-          <Button size="lg" variant="outline" render={<Link href="/login" />}>
+          <Button
+            size="lg"
+            variant="outline"
+            nativeButton={false}
+            render={<Link href="/login" />}
+          >
             J&apos;ai déjà un compte
           </Button>
         </div>
