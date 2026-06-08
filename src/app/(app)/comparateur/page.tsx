@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BarChart3 } from "lucide-react";
+import { PageHeading } from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -68,12 +70,10 @@ export default async function ComparateurPage({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Comparateur énergie</h1>
-        <p className="text-muted-foreground">
-          Estimez votre coût annuel et l&apos;économie possible en changeant d&apos;offre.
-        </p>
-      </div>
+      <PageHeading icon={BarChart3} chip="bg-sky-100 text-sky-600" title="Comparateur énergie">
+        Estimez votre coût annuel et l&apos;économie possible en changeant
+        d&apos;offre.
+      </PageHeading>
 
       {hasExample && (
         <div className="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-200">

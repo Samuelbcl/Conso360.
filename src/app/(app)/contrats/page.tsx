@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { FileText } from "lucide-react";
 import { CompareContractButton } from "@/components/compare-contract-button";
 import { ContractForm } from "@/components/contract-form";
 import { DeleteContractButton } from "@/components/delete-contract-button";
 import { DeleteInvoiceButton } from "@/components/delete-invoice-button";
 import { InvoiceUpload } from "@/components/invoice-upload";
+import { PageHeading } from "@/components/page-heading";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -60,15 +62,10 @@ export default async function ContratsPage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Mes contrats énergie
-        </h1>
-        <p className="text-muted-foreground">
-          Encodez vos contrats actuels pour les comparer au marché et suivre vos
-          économies.
-        </p>
-      </div>
+      <PageHeading icon={FileText} chip="bg-amber-100 text-amber-600" title="Mes contrats énergie">
+        Encodez vos contrats actuels pour les comparer au marché et suivre vos
+        économies.
+      </PageHeading>
 
       <Card>
         <CardHeader>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Bell } from "lucide-react";
 import { AlertStatusButtons, CheckAlertsButton } from "@/components/alert-controls";
+import { PageHeading } from "@/components/page-heading";
 import { Card, CardContent } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 import type { Alert } from "@/types/database";
@@ -30,13 +32,10 @@ export default async function AlertesPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Alertes</h1>
-          <p className="text-muted-foreground">
-            Conso360 vous prévient quand une meilleure offre apparaît pour vos
-            contrats.
-          </p>
-        </div>
+        <PageHeading icon={Bell} chip="bg-violet-100 text-violet-600" title="Alertes">
+          Conso360 vous prévient quand une meilleure offre apparaît pour vos
+          contrats.
+        </PageHeading>
         <CheckAlertsButton />
       </div>
 

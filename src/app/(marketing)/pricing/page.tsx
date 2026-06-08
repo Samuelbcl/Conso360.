@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Check, Crown, Sparkles, TrendingDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,6 +24,8 @@ const PLANS = [
     prix: "Gratuit",
     sousTitre: "ou 2–5 €/mois sans pub",
     description: "Pour explorer le marché et estimer vos économies.",
+    icon: Sparkles,
+    chip: "bg-emerald-100 text-emerald-600",
     features: [
       "Consultation des offres du marché",
       "Filtres par profil (ménage, logement, VE…)",
@@ -39,6 +42,8 @@ const PLANS = [
     prix: "5–10 €/mois",
     sousTitre: "le suivi continu",
     description: "Pour suivre vos contrats et être alerté des meilleures offres.",
+    icon: TrendingDown,
+    chip: "bg-white/20 text-white",
     features: [
       "Tout de la Formule 1",
       "Encodage de vos contrats actuels",
@@ -57,6 +62,8 @@ const PLANS = [
     prix: "15–30 €/mois",
     sousTitre: "ou 150–300 €/an",
     description: "Pour être accompagné de bout en bout.",
+    icon: Crown,
+    chip: "bg-violet-100 text-violet-600",
     features: [
       "Tout de la Formule 2",
       "Audit annuel de tous vos contrats",
@@ -74,7 +81,11 @@ export default function PricingPage() {
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-16">
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+        <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+          <Sparkles className="size-3.5" />
+          Tarifs
+        </span>
+        <h1 className="mt-4 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
           Une formule pour chaque besoin
         </h1>
         <p className="mt-4 text-muted-foreground">
@@ -83,45 +94,70 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-3">
-        {PLANS.map((p) => (
-          <Card key={p.tag} className={p.highlight ? "border-primary shadow-sm" : ""}>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <p className="text-xs font-medium text-muted-foreground">{p.tag}</p>
-                {p.highlight && (
-                  <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
-                    Populaire
-                  </span>
-                )}
-              </div>
-              <CardTitle className="text-xl">{p.nom}</CardTitle>
-              <p className="pt-2 text-3xl font-semibold">{p.prix}</p>
-              <CardDescription>{p.sousTitre}</CardDescription>
-              <CardDescription className="pt-2">{p.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-emerald-600">✓</span>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button
-                className="w-full"
-                variant={p.highlight ? "default" : "outline"}
-                nativeButton={false}
-                render={<Link href={p.href} />}
-              >
-                {p.cta}
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+      <div className="mt-12 grid items-start gap-6 lg:grid-cols-3">
+        {PLANS.map((p) => {
+          const popular = p.highlight;
+          return (
+            <Card
+              key={p.tag}
+              className={
+                popular
+                  ? "relative bg-gradient-to-br from-emerald-500 to-sky-500 text-white shadow-xl lg:-mt-4 lg:pb-2"
+                  : "relative"
+              }
+            >
+              {popular && (
+                <span className="absolute right-4 top-4 rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-semibold">
+                  ★ Populaire
+                </span>
+              )}
+              <CardHeader>
+                <span
+                  className={`grid size-11 place-items-center rounded-2xl ${p.chip}`}
+                >
+                  <p.icon className="size-5" />
+                </span>
+                <p
+                  className={`mt-3 text-xs font-medium ${popular ? "text-white/80" : "text-muted-foreground"}`}
+                >
+                  {p.tag}
+                </p>
+                <CardTitle className="text-xl">{p.nom}</CardTitle>
+                <p className="pt-2 font-heading text-3xl font-bold">{p.prix}</p>
+                <CardDescription className={popular ? "text-white/80" : ""}>
+                  {p.sousTitre}
+                </CardDescription>
+                <CardDescription
+                  className={popular ? "pt-2 text-white/90" : "pt-2"}
+                >
+                  {p.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2.5 text-sm">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <Check
+                        className={`mt-0.5 size-4 shrink-0 ${popular ? "text-white" : "text-emerald-600"}`}
+                      />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  className="w-full rounded-full"
+                  variant={popular ? "secondary" : "outline"}
+                  nativeButton={false}
+                  render={<Link href={p.href} />}
+                >
+                  {p.cta}
+                </Button>
+              </CardFooter>
+            </Card>
+          );
+        })}
       </div>
 
       <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-muted-foreground">

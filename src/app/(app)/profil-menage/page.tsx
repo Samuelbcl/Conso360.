@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { User } from "lucide-react";
 import { HouseholdForm } from "@/components/household-form";
+import { PageHeading } from "@/components/page-heading";
 import { createClient } from "@/lib/supabase/server";
 import type { Household } from "@/types/database";
 
@@ -19,13 +21,10 @@ export default async function ProfilMenagePage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Profil ménage</h1>
-        <p className="text-muted-foreground">
-          Ces informations servent de base à toutes vos comparaisons et
-          estimations d&apos;économies. Vous pouvez les modifier à tout moment.
-        </p>
-      </div>
+      <PageHeading icon={User} chip="bg-emerald-100 text-emerald-600" title="Profil ménage">
+        Ces informations servent de base à toutes vos comparaisons et estimations
+        d&apos;économies. Vous pouvez les modifier à tout moment.
+      </PageHeading>
       <HouseholdForm household={household ?? null} />
     </div>
   );
