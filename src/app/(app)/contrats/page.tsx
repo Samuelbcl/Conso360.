@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CompareContractButton } from "@/components/compare-contract-button";
 import { ContractForm } from "@/components/contract-form";
 import { DeleteContractButton } from "@/components/delete-contract-button";
 import {
@@ -8,9 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { eur2 } from "@/lib/format";
+import { eur, eur2 } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
-import type { Contract } from "@/types/database";
+import type { ComparisonResult } from "@/server/comparison";
+import type { Comparison, Contract } from "@/types/database";
 
 export const metadata: Metadata = { title: "Mes contrats" };
 
@@ -29,6 +31,17 @@ export default async function ContratsPage() {
     .returns<Contract[]>();
 
   const list = contracts ?? [];
+
+  const { data: lastComparison } = await supabase
+    .from("comparisons")
+    .select("*")
+    .eq("user_id", user!.id)
+    .eq("category", "energy")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle<Comparison>();
+
+  const lastResult = lastComparison?.result as ComparisonResult | undefined;
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -51,6 +64,41 @@ export default async function ContratsPage() {
           <ContractForm />
         </CardContent>
       </Card>
+
+      {lastComparison && (
+        <Card
+          className={
+            lastComparison.savings_annual && lastComparison.savings_annual > 0
+              ? "border-emerald-400"
+              : ""
+          }
+        >
+          <CardHeader>
+            <CardDescription>Dernière comparaison</CardDescription>
+            <CardTitle className="text-2xl">
+              {lastComparison.savings_annual && lastComparison.savings_annual > 0
+                ? `${eur(lastComparison.savings_annual)} d'économie / an`
+                : "Votre contrat est déjà compétitif"}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground">
+            {lastResult?.best ? (
+              <>
+                Meilleure offre :{" "}
+                <strong>
+                  {lastResult.best.providerName} — {lastResult.best.offerName}
+                </strong>{" "}
+                ({eur2(lastResult.best.annualCost)}/an)
+                {lastComparison.current_cost_annual
+                  ? ` vs ${eur2(lastComparison.current_cost_annual)}/an actuellement.`
+                  : "."}
+              </>
+            ) : (
+              "Aucune offre exploitable."
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       <div className="space-y-3">
         <h2 className="text-sm font-medium text-muted-foreground">
@@ -76,7 +124,10 @@ export default async function ContratsPage() {
                     {c.renewal_date ? ` · échéance ${c.renewal_date}` : ""}
                   </p>
                 </div>
-                <DeleteContractButton id={c.id} />
+                <div className="flex items-center gap-2">
+                  <CompareContractButton id={c.id} />
+                  <DeleteContractButton id={c.id} />
+                </div>
               </CardContent>
             </Card>
           ))
