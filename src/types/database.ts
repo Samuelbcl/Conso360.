@@ -85,3 +85,68 @@ export interface Offer {
   active: boolean;
   created_at: string;
 }
+
+/** contracts — contrats actuels du client */
+export interface Contract {
+  id: string;
+  user_id: string;
+  category: Category;
+  provider_id: string | null;
+  provider_name: string | null;
+  offer_name: string | null;
+  monthly_cost: number | null;
+  annual_cost: number | null;
+  start_date: string | null;
+  renewal_date: string | null;
+  details: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+}
+
+/** invoices — factures PDF (Storage) + données extraites */
+export interface Invoice {
+  id: string;
+  user_id: string;
+  contract_id: string | null;
+  category: Category;
+  file_path: string;
+  parsed_data: Record<string, unknown>;
+  status: string;
+  uploaded_at: string;
+}
+
+/** comparisons — résultats persistés du moteur */
+export interface Comparison {
+  id: string;
+  user_id: string;
+  household_id: string | null;
+  category: Category;
+  current_cost_annual: number | null;
+  best_offer_id: string | null;
+  best_cost_annual: number | null;
+  savings_annual: number | null;
+  roi_months: number | null;
+  result: Record<string, unknown>;
+  created_at: string;
+}
+
+/** alerts — meilleures offres détectées */
+export interface Alert {
+  id: string;
+  user_id: string;
+  category: Category;
+  message: string;
+  offer_id: string | null;
+  status: AlertStatus;
+  created_at: string;
+}
+
+/** savings_reports — rapports PDF d'économies */
+export interface SavingsReport {
+  id: string;
+  user_id: string;
+  period: string | null;
+  total_savings: number | null;
+  report_pdf_path: string | null;
+  created_at: string;
+}

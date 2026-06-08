@@ -75,11 +75,18 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="opacity-60">
+        <Card>
           <CardHeader>
             <CardTitle>Mes contrats &amp; factures</CardTitle>
-            <CardDescription>Bientôt — Phase 3 (Formule 2).</CardDescription>
+            <CardDescription>
+              Encodez vos contrats et suivez vos économies.
+            </CardDescription>
           </CardHeader>
+          <CardContent>
+            <Button variant="outline" nativeButton={false} render={<Link href="/contrats" />}>
+              Gérer mes contrats
+            </Button>
+          </CardContent>
         </Card>
       </div>
     </div>
