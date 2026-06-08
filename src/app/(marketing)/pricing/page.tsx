@@ -25,7 +25,7 @@ const PLANS = [
     sousTitre: "ou 2–5 €/mois sans pub",
     description: "Pour explorer le marché et estimer vos économies.",
     icon: Sparkles,
-    chip: "bg-emerald-100 text-emerald-600",
+    chip: "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-500/30",
     features: [
       "Consultation des offres du marché",
       "Filtres par profil (ménage, logement, VE…)",
@@ -63,7 +63,7 @@ const PLANS = [
     sousTitre: "ou 150–300 €/an",
     description: "Pour être accompagné de bout en bout.",
     icon: Crown,
-    chip: "bg-violet-100 text-violet-600",
+    chip: "bg-gradient-to-br from-violet-400 to-purple-500 text-white shadow-md shadow-violet-500/30",
     features: [
       "Tout de la Formule 2",
       "Audit annuel de tous vos contrats",
@@ -113,9 +113,9 @@ export default function PricingPage() {
               )}
               <CardHeader>
                 <span
-                  className={`grid size-11 place-items-center rounded-2xl ${p.chip}`}
+                  className={`grid size-12 place-items-center rounded-2xl ${p.chip}`}
                 >
-                  <p.icon className="size-5" />
+                  <p.icon className="size-6" strokeWidth={2.25} />
                 </span>
                 <p
                   className={`mt-3 text-xs font-medium ${popular ? "text-white/80" : "text-muted-foreground"}`}

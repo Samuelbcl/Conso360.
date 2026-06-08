@@ -37,21 +37,21 @@ const CATEGORIES = [
     icon: Zap,
     name: "Énergie",
     text: "Électricité & gaz : trouvez le tarif le plus avantageux pour votre profil.",
-    color: "bg-amber-100 text-amber-600",
+    color: "bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30",
     ring: "group-hover:ring-amber-200",
   },
   {
     icon: Wifi,
     name: "Télécom",
     text: "Internet & mobile : le bon forfait selon votre usage réel.",
-    color: "bg-sky-100 text-sky-600",
+    color: "bg-gradient-to-br from-sky-400 to-blue-500 text-white shadow-md shadow-sky-500/30",
     ring: "group-hover:ring-sky-200",
   },
   {
     icon: ShieldCheck,
     name: "Assurances",
     text: "Comparez à garanties équivalentes, sans mauvaise surprise.",
-    color: "bg-violet-100 text-violet-600",
+    color: "bg-gradient-to-br from-violet-400 to-purple-500 text-white shadow-md shadow-violet-500/30",
     ring: "group-hover:ring-violet-200",
   },
 ];
@@ -65,7 +65,7 @@ export default function LandingPage() {
         <div className="pointer-events-none absolute -top-24 left-1/2 size-[40rem] -translate-x-1/2 rounded-full bg-emerald-300/20 blur-3xl" />
         <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/70 px-3 py-1 text-xs font-medium text-emerald-700 shadow-sm">
+            <span className="inline-flex select-none items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-600">
               <Sparkles className="size-3.5" />
               Belgique · Énergie · Télécom · Assurances
             </span>
@@ -105,9 +105,12 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Mock visuel */}
-          <div className="relative mx-auto w-full max-w-sm">
+          {/* Mock visuel (illustration, non interactif) */}
+          <div className="relative mx-auto w-full max-w-sm select-none" aria-hidden="true">
             <div className="rounded-3xl border bg-card p-6 shadow-xl shadow-emerald-900/5 ring-1 ring-foreground/5">
+              <span className="mb-4 inline-block rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                Aperçu
+              </span>
               <div className="flex items-center gap-3">
                 <span className="grid size-10 place-items-center rounded-2xl bg-emerald-100 text-emerald-600">
                   <PiggyBank className="size-5" />
@@ -166,8 +169,8 @@ export default function LandingPage() {
               key={s.title}
               className="relative rounded-2xl border bg-card p-6 ring-1 ring-foreground/5"
             >
-              <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-sky-500 text-white shadow-sm">
-                <s.icon className="size-5" />
+              <span className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-sky-500 text-white shadow-md shadow-emerald-500/25">
+                <s.icon className="size-6" strokeWidth={2.25} />
               </span>
               <p className="mt-4 font-heading font-semibold">
                 <span className="text-muted-foreground">{i + 1}. </span>
@@ -188,9 +191,9 @@ export default function LandingPage() {
               className={`group rounded-2xl border bg-card p-6 ring-1 ring-foreground/5 transition-all hover:-translate-y-1 hover:shadow-lg ${c.ring}`}
             >
               <span
-                className={`grid size-12 place-items-center rounded-2xl ${c.color}`}
+                className={`grid size-14 place-items-center rounded-2xl ${c.color}`}
               >
-                <c.icon className="size-6" />
+                <c.icon className="size-7" strokeWidth={2.25} />
               </span>
               <p className="mt-4 font-heading text-lg font-semibold">{c.name}</p>
               <p className="mt-1 text-sm text-muted-foreground">{c.text}</p>

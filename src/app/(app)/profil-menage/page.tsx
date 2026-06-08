@@ -21,7 +21,7 @@ export default async function ProfilMenagePage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <PageHeading icon={User} chip="bg-emerald-100 text-emerald-600" title="Profil ménage">
+      <PageHeading icon={User} chip="bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-500/30" title="Profil ménage">
         Ces informations servent de base à toutes vos comparaisons et estimations
         d&apos;économies. Vous pouvez les modifier à tout moment.
       </PageHeading>

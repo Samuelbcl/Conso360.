@@ -14,9 +14,9 @@ export function PageHeading({
   return (
     <div className="flex items-start gap-3">
       <span
-        className={`grid size-11 shrink-0 place-items-center rounded-2xl ${chip}`}
+        className={`grid size-12 shrink-0 place-items-center rounded-2xl ${chip}`}
       >
-        <Icon className="size-5" />
+        <Icon className="size-6" strokeWidth={2.25} />
       </span>
       <div>
         <h1 className="font-heading text-2xl font-bold tracking-tight">{title}</h1>

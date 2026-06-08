@@ -32,7 +32,7 @@ export default async function AlertesPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
-        <PageHeading icon={Bell} chip="bg-violet-100 text-violet-600" title="Alertes">
+        <PageHeading icon={Bell} chip="bg-gradient-to-br from-violet-400 to-purple-500 text-white shadow-md shadow-violet-500/30" title="Alertes">
           Conso360 vous prévient quand une meilleure offre apparaît pour vos
           contrats.
         </PageHeading>

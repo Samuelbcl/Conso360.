@@ -52,7 +52,7 @@ export default async function DashboardPage() {
         ? "Profil renseigné — base de vos comparaisons."
         : "À compléter pour estimer vos économies.",
       icon: User,
-      chip: "bg-emerald-100 text-emerald-600",
+      chip: "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-500/30",
       href: "/profil-menage",
       cta: profileComplete ? "Modifier" : "Compléter mon profil",
       primary: !profileComplete,
@@ -61,7 +61,7 @@ export default async function DashboardPage() {
       title: "Comparateur énergie",
       desc: "Estimez votre coût annuel et l'économie possible.",
       icon: BarChart3,
-      chip: "bg-sky-100 text-sky-600",
+      chip: "bg-gradient-to-br from-sky-400 to-blue-500 text-white shadow-md shadow-sky-500/30",
       href: "/comparateur",
       cta: "Comparer mes offres",
       primary: false,
@@ -70,7 +70,7 @@ export default async function DashboardPage() {
       title: "Contrats & factures",
       desc: "Encodez vos contrats et suivez vos économies.",
       icon: FileText,
-      chip: "bg-amber-100 text-amber-600",
+      chip: "bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30",
       href: "/contrats",
       cta: "Gérer mes contrats",
       primary: false,
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
       title: "Alertes",
       desc: "Soyez prévenu dès qu'une meilleure offre apparaît.",
       icon: Bell,
-      chip: "bg-violet-100 text-violet-600",
+      chip: "bg-gradient-to-br from-violet-400 to-purple-500 text-white shadow-md shadow-violet-500/30",
       href: "/alertes",
       cta: "Voir mes alertes",
       primary: false,
@@ -129,9 +129,9 @@ export default async function DashboardPage() {
           >
             <CardHeader>
               <span
-                className={`grid size-11 place-items-center rounded-2xl ${c.chip}`}
+                className={`grid size-12 place-items-center rounded-2xl ${c.chip}`}
               >
-                <c.icon className="size-5" />
+                <c.icon className="size-6" strokeWidth={2.25} />
               </span>
               <CardTitle className="mt-3">{c.title}</CardTitle>
               <CardDescription>{c.desc}</CardDescription>

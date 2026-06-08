@@ -70,7 +70,7 @@ export default async function ComparateurPage({
 
   return (
     <div className="space-y-6">
-      <PageHeading icon={BarChart3} chip="bg-sky-100 text-sky-600" title="Comparateur énergie">
+      <PageHeading icon={BarChart3} chip="bg-gradient-to-br from-sky-400 to-blue-500 text-white shadow-md shadow-sky-500/30" title="Comparateur énergie">
         Estimez votre coût annuel et l&apos;économie possible en changeant
         d&apos;offre.
       </PageHeading>

@@ -62,7 +62,7 @@ export default async function ContratsPage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <PageHeading icon={FileText} chip="bg-amber-100 text-amber-600" title="Mes contrats énergie">
+      <PageHeading icon={FileText} chip="bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30" title="Mes contrats énergie">
         Encodez vos contrats actuels pour les comparer au marché et suivre vos
         économies.
       </PageHeading>
