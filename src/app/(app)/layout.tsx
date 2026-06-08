@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 const NAV = [
   { href: "/dashboard", label: "Tableau de bord" },
   { href: "/profil-menage", label: "Profil ménage" },
+  { href: "/comparateur", label: "Comparateur" },
 ];
 
 export default async function AppLayout({

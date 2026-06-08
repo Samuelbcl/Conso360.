@@ -61,11 +61,18 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="opacity-60">
+        <Card>
           <CardHeader>
             <CardTitle>Comparateur énergie</CardTitle>
-            <CardDescription>Bientôt — Phase 2 (MVP énergie).</CardDescription>
+            <CardDescription>
+              Estimez votre coût annuel et l&apos;économie possible.
+            </CardDescription>
           </CardHeader>
+          <CardContent>
+            <Button variant="outline" nativeButton={false} render={<Link href="/comparateur" />}>
+              Comparer mes offres
+            </Button>
+          </CardContent>
         </Card>
 
         <Card className="opacity-60">
