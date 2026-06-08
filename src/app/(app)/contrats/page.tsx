@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { CompareContractButton } from "@/components/compare-contract-button";
 import { ContractForm } from "@/components/contract-form";
 import { DeleteContractButton } from "@/components/delete-contract-button";
+import { DeleteInvoiceButton } from "@/components/delete-invoice-button";
+import { InvoiceUpload } from "@/components/invoice-upload";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,7 +15,10 @@ import {
 import { eur, eur2 } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { ComparisonResult } from "@/server/comparison";
-import type { Comparison, Contract } from "@/types/database";
+import type { Comparison, Contract, Invoice } from "@/types/database";
+
+const fileName = (path: string) =>
+  (path.split("/").pop() ?? path).replace(/^\d+-/, "");
 
 export const metadata: Metadata = { title: "Mes contrats" };
 
@@ -43,6 +48,15 @@ export default async function ContratsPage() {
     .maybeSingle<Comparison>();
 
   const lastResult = lastComparison?.result as ComparisonResult | undefined;
+
+  const { data: invoices } = await supabase
+    .from("invoices")
+    .select("*")
+    .eq("user_id", user!.id)
+    .order("uploaded_at", { ascending: false })
+    .returns<Invoice[]>();
+
+  const invoiceList = invoices ?? [];
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -144,6 +158,38 @@ export default async function ContratsPage() {
           ))
         )}
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Importer une facture (PDF)</CardTitle>
+          <CardDescription>
+            Conservez vos factures au même endroit. L&apos;extraction automatique
+            des données arrive bientôt.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <InvoiceUpload userId={user!.id} />
+          {invoiceList.length > 0 && (
+            <ul className="divide-y">
+              {invoiceList.map((inv) => (
+                <li
+                  key={inv.id}
+                  className="flex items-center justify-between gap-4 py-2 text-sm"
+                >
+                  <div>
+                    <p className="font-medium">{fileName(inv.file_path)}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {new Date(inv.uploaded_at).toLocaleDateString("fr-BE")} ·{" "}
+                      {inv.status === "uploaded" ? "importée (extraction à venir)" : inv.status}
+                    </p>
+                  </div>
+                  <DeleteInvoiceButton id={inv.id} path={inv.file_path} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
