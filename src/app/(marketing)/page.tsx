@@ -1,93 +1,232 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  ArrowRight,
+  BellRing,
+  FileText,
+  Gauge,
+  PiggyBank,
+  ShieldCheck,
+  Sparkles,
+  TrendingDown,
+  Wifi,
+  Zap,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
 
-const FORMULES = [
+const STEPS = [
   {
-    nom: "Comparateur simple",
-    tag: "Formule 1",
-    pitch:
-      "Consultez les offres du marché, filtrez par profil et estimez vos économies.",
-    prix: "Gratuit",
+    icon: Gauge,
+    title: "Décrivez votre ménage",
+    text: "Quelques infos (logement, conso, équipements) suffisent pour démarrer.",
   },
   {
-    nom: "Comparateur personnalisé",
-    tag: "Formule 2",
-    pitch:
-      "Encodez vos contrats, importez vos factures, comparaison automatique et alertes.",
-    prix: "5–10 €/mois",
+    icon: TrendingDown,
+    title: "Comparez en un clic",
+    text: "On classe les offres du marché et on estime votre économie annuelle.",
   },
   {
-    nom: "Audit & accompagnement",
-    tag: "Formule 3",
-    pitch:
-      "Audit annuel, conseiller dédié et gestion du changement de fournisseur.",
-    prix: "15–30 €/mois",
+    icon: BellRing,
+    title: "Restez optimisé",
+    text: "On vous alerte dès qu'une meilleure offre apparaît. Sans effort.",
+  },
+];
+
+const CATEGORIES = [
+  {
+    icon: Zap,
+    name: "Énergie",
+    text: "Électricité & gaz : trouvez le tarif le plus avantageux pour votre profil.",
+    color: "bg-amber-100 text-amber-600",
+    ring: "group-hover:ring-amber-200",
+  },
+  {
+    icon: Wifi,
+    name: "Télécom",
+    text: "Internet & mobile : le bon forfait selon votre usage réel.",
+    color: "bg-sky-100 text-sky-600",
+    ring: "group-hover:ring-sky-200",
+  },
+  {
+    icon: ShieldCheck,
+    name: "Assurances",
+    text: "Comparez à garanties équivalentes, sans mauvaise surprise.",
+    color: "bg-violet-100 text-violet-600",
+    ring: "group-hover:ring-violet-200",
   },
 ];
 
 export default function LandingPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-3xl px-4 py-24 text-center">
-        <p className="text-sm font-medium text-muted-foreground">
-          Belgique · Énergie · Télécom · Assurances
-        </p>
-        <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-          Un seul tableau de bord pour réduire toutes vos factures
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-balance text-lg text-muted-foreground">
-          {APP_NAME} compare, suit et optimise vos contrats en continu — le coach
-          personnel des dépenses de votre ménage.
-        </p>
-        <div className="mt-8 flex justify-center gap-3">
-          <Button size="lg" nativeButton={false} render={<Link href="/signup" />}>
-            Créer mon compte
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            nativeButton={false}
-            render={<Link href="/login" />}
-          >
-            J&apos;ai déjà un compte
-          </Button>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-emerald-50 via-sky-50/50 to-background" />
+        <div className="pointer-events-none absolute -top-24 left-1/2 size-[40rem] -translate-x-1/2 rounded-full bg-emerald-300/20 blur-3xl" />
+        <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/70 px-3 py-1 text-xs font-medium text-emerald-700 shadow-sm">
+              <Sparkles className="size-3.5" />
+              Belgique · Énergie · Télécom · Assurances
+            </span>
+            <h1 className="mt-5 font-heading text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl">
+              Réduisez{" "}
+              <span className="bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent">
+                toutes vos factures
+              </span>{" "}
+              depuis un seul tableau de bord
+            </h1>
+            <p className="mt-5 max-w-md text-lg text-muted-foreground">
+              {APP_NAME} compare, suit et optimise vos contrats en continu — le
+              coach personnel des dépenses de votre ménage.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button
+                size="lg"
+                className="rounded-full"
+                nativeButton={false}
+                render={<Link href="/signup" />}
+              >
+                Créer mon compte gratuit
+                <ArrowRight className="size-4" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full"
+                nativeButton={false}
+                render={<Link href="/pricing" />}
+              >
+                Voir les tarifs
+              </Button>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Sans engagement · Aucune carte bancaire requise
+            </p>
+          </div>
+
+          {/* Mock visuel */}
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="rounded-3xl border bg-card p-6 shadow-xl shadow-emerald-900/5 ring-1 ring-foreground/5">
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-2xl bg-emerald-100 text-emerald-600">
+                  <PiggyBank className="size-5" />
+                </span>
+                <div>
+                  <p className="text-xs text-muted-foreground">
+                    Économie estimée / an
+                  </p>
+                  <p className="font-heading text-2xl font-bold text-emerald-600">
+                    + 240 €
+                  </p>
+                </div>
+              </div>
+              <div className="mt-5 space-y-2">
+                {[
+                  { n: "Mega — Online Fixe", v: "1 980 €", best: true },
+                  { n: "TotalEnergies — Pixel", v: "2 040 €", best: false },
+                  { n: "Votre contrat actuel", v: "2 220 €", best: false },
+                ].map((o) => (
+                  <div
+                    key={o.n}
+                    className={`flex items-center justify-between rounded-xl border px-3 py-2 text-sm ${
+                      o.best
+                        ? "border-emerald-300 bg-emerald-50"
+                        : "border-transparent bg-muted/60"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {o.best && (
+                        <span className="rounded bg-emerald-500 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                          TOP
+                        </span>
+                      )}
+                      {o.n}
+                    </span>
+                    <span className="font-semibold tabular-nums">{o.v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="pointer-events-none absolute -right-4 -top-4 hidden rounded-2xl bg-sky-500 px-3 py-2 text-sm font-semibold text-white shadow-lg sm:block">
+              -11% 🎉
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-5xl px-4 pb-24">
-        <div className="grid gap-4 md:grid-cols-3">
-          {FORMULES.map((f) => (
-            <Card key={f.tag}>
-              <CardHeader>
-                <p className="text-xs font-medium text-muted-foreground">
-                  {f.tag}
-                </p>
-                <CardTitle>{f.nom}</CardTitle>
-                <CardDescription>{f.pitch}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg font-semibold">{f.prix}</p>
-              </CardContent>
-            </Card>
+      {/* COMMENT ÇA MARCHE */}
+      <section className="mx-auto w-full max-w-6xl px-4 py-16">
+        <h2 className="text-center font-heading text-2xl font-bold sm:text-3xl">
+          Simple, rapide, sans prise de tête
+        </h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {STEPS.map((s, i) => (
+            <div
+              key={s.title}
+              className="relative rounded-2xl border bg-card p-6 ring-1 ring-foreground/5"
+            >
+              <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-sky-500 text-white shadow-sm">
+                <s.icon className="size-5" />
+              </span>
+              <p className="mt-4 font-heading font-semibold">
+                <span className="text-muted-foreground">{i + 1}. </span>
+                {s.title}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">{s.text}</p>
+            </div>
           ))}
         </div>
-        <div className="mt-8 text-center">
-          <Button variant="outline" nativeButton={false} render={<Link href="/pricing" />}>
-            Voir le détail des tarifs
-          </Button>
+      </section>
+
+      {/* CATÉGORIES */}
+      <section className="mx-auto w-full max-w-6xl px-4 pb-16">
+        <div className="grid gap-6 md:grid-cols-3">
+          {CATEGORIES.map((c) => (
+            <div
+              key={c.name}
+              className={`group rounded-2xl border bg-card p-6 ring-1 ring-foreground/5 transition-all hover:-translate-y-1 hover:shadow-lg ${c.ring}`}
+            >
+              <span
+                className={`grid size-12 place-items-center rounded-2xl ${c.color}`}
+              >
+                <c.icon className="size-6" />
+              </span>
+              <p className="mt-4 font-heading text-lg font-semibold">{c.name}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{c.text}</p>
+            </div>
+          ))}
         </div>
-        <p className="mt-6 text-center text-xs text-muted-foreground">
-          Service de comparaison et de suivi. Conso360 n&apos;est pas une autorité
-          tarifaire ni un courtier agréé.
-        </p>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="mx-auto w-full max-w-6xl px-4 pb-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 to-sky-500 px-6 py-14 text-center text-white shadow-xl sm:px-12">
+          <div className="pointer-events-none absolute -right-10 -top-10 size-48 rounded-full bg-white/10 blur-2xl" />
+          <h2 className="relative font-heading text-2xl font-bold sm:text-3xl">
+            Prêt à payer vos factures moins cher ?
+          </h2>
+          <p className="relative mx-auto mt-3 max-w-md text-white/90">
+            Commencez gratuitement en moins de deux minutes. Vous gardez le contrôle,
+            on s&apos;occupe du reste.
+          </p>
+          <div className="relative mt-7 flex justify-center">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="rounded-full bg-white text-emerald-700 hover:bg-white/90"
+              nativeButton={false}
+              render={<Link href="/signup" />}
+            >
+              Commencer maintenant
+              <ArrowRight className="size-4" />
+            </Button>
+          </div>
+          <p className="relative mt-6 inline-flex items-center gap-2 text-xs text-white/80">
+            <FileText className="size-3.5" />
+            Service de comparaison et de suivi — pas une autorité tarifaire.
+          </p>
+        </div>
       </section>
     </div>
   );
