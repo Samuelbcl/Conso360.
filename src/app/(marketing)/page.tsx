@@ -36,25 +36,6 @@ const FORMULES = [
 export default function LandingPage() {
   return (
     <div className="flex flex-1 flex-col">
-      <header className="border-b">
-        <div className="mx-auto flex h-14 w-full max-w-6xl items-center px-4">
-          <span className="font-semibold tracking-tight">{APP_NAME}</span>
-          <div className="ml-auto flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              nativeButton={false}
-              render={<Link href="/login" />}
-            >
-              Se connecter
-            </Button>
-            <Button size="sm" nativeButton={false} render={<Link href="/signup" />}>
-              Commencer
-            </Button>
-          </div>
-        </div>
-      </header>
-
       <section className="mx-auto w-full max-w-3xl px-4 py-24 text-center">
         <p className="text-sm font-medium text-muted-foreground">
           Belgique · Énergie · Télécom · Assurances
@@ -97,6 +78,11 @@ export default function LandingPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Button variant="outline" nativeButton={false} render={<Link href="/pricing" />}>
+            Voir le détail des tarifs
+          </Button>
         </div>
         <p className="mt-6 text-center text-xs text-muted-foreground">
           Service de comparaison et de suivi. Conso360 n&apos;est pas une autorité

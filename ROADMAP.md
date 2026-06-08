@@ -9,14 +9,14 @@ Périmètre : **énergie uniquement**, Formules 1 + 2.
 - ✅ Auth (signup / login / magic link + routes callback & confirm)
 - 🟡 Schéma DB appliqué (`0001_init.sql`) + RLS — *SQL prêt ; à appliquer une fois le projet Supabase EU créé*
 - ✅ Formulaire profil ménage (`households`, Server Action + Zod)
-- 🔲 Seed fournisseurs + offres énergie (données d'exemple) — *SQL `0002_seed_example.sql` prêt, à enrichir*
-- 🔲 Moteur de comparaison énergie + tests
-- 🔲 Comparateur F1 (saisie rapide → résultats + économie estimée)
+- ✅ Seed fournisseurs + offres énergie (exemples) — migrations `0002` + `0003_seed_energy_offers.sql`
+- ✅ Moteur de comparaison énergie + tests (`src/server/comparison`, 10 tests Vitest verts)
+- ✅ Comparateur F1 (`/comparateur` : saisie rapide → offres classées + économie estimée)
 - 🔲 Encodage contrats énergie (F2)
 - 🔲 Upload facture PDF → Storage + `invoices`
 - 🔲 Comparaison auto + persistance
 - 🔲 Rapport PDF d'économies
-- 🟡 Landing + page pricing (3 formules) — *landing de base en place ; page pricing détaillée à faire*
+- ✅ Landing + page pricing 3 formules (`/`, `/pricing`)
 
 **Budget de dev estimé (réf. brief initial)** : MVP 8 000–20 000 € · plateforme complète 30 000–100 000 €.
 
