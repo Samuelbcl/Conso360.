@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CompareContractButton } from "@/components/compare-contract-button";
 import { ContractForm } from "@/components/contract-form";
 import { DeleteContractButton } from "@/components/delete-contract-button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -96,6 +97,16 @@ export default async function ContratsPage() {
             ) : (
               "Aucune offre exploitable."
             )}
+            <div className="mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                nativeButton={false}
+                render={<a href="/contrats/rapport" />}
+              >
+                Télécharger le rapport PDF
+              </Button>
+            </div>
           </CardContent>
         </Card>
       )}
