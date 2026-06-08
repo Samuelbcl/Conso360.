@@ -9,6 +9,7 @@ const NAV = [
   { href: "/profil-menage", label: "Profil ménage" },
   { href: "/comparateur", label: "Comparateur" },
   { href: "/contrats", label: "Contrats" },
+  { href: "/alertes", label: "Alertes" },
 ];
 
 export default async function AppLayout({
